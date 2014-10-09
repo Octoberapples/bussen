@@ -33,6 +33,7 @@ struct station *mkStation(char *station_namn, struct resa *busstur) {
   return NULL;
 }
 
+//-> för members i structen . för att komma åt structen
 //skapa ny länk (bågarna där bussen reser)
 struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct station *bussplats2){
   struct resa *result = malloc(sizeof(struct resa));
@@ -48,8 +49,14 @@ struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct sta
 
 //ta bort en nod
 //ta bort en båge
+//1.find nod/båge with the element (if it exists)
+//2.remove the nod/båge
+//3.Reconnect the linked list
+//4.Update the graph
 //hitta kortaste vägen mellan två noder (Dijkstras algoritm)
 
+//ta bort en station
+void stationDelete(Station, 
  
 
 
