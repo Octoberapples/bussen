@@ -2,12 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-//struct resa;
-//De kallar på sig själv
+struct resa;
 
 typedef struct station {
   char *station_namn;
-  struct resa *travel;
+  struct resa *busstur;
 } *Station;
 
 typedef struct resa {
@@ -17,9 +16,53 @@ typedef struct resa {
   struct station *bussplats2;
 } *Resa;
 
-int main() {
+
+/**int main() {
   return 0;
+  }**/
+
+//Skapa ny station, när man skapar en lista från början så är den tom men nu så innehåller station massa nman på busshållsplatser
+
+struct station *mkStation(char *station_namn, struct resa *busstur) {
+  struct station *result = malloc(sizeof(struct station));
+  if (result != NULL) {
+    result->station_namn = station_namn;
+    result->busstur = busstur;
+    return result;
+  }
+  return NULL;
 }
+
+//skapa ny länk (bågarna där bussen reser)
+struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct station *bussplats2){
+  struct resa *result = malloc(sizeof(struct resa));
+  if (result != NULL) {
+    result->tid = tid;
+    result->linje = linje;
+    result->bussplats1 = bussplats1;
+    result->bussplats2 = bussplats2;
+    return result;
+  }
+  return NULL;
+}
+
+//ta bort en nod
+//ta bort en båge
+//hitta kortaste vägen mellan två noder (Dijkstras algoritm)
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
 typedef struct {
