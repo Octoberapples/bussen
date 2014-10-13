@@ -1,6 +1,10 @@
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+//eventuellt lägga till en struct för en tidtabell
 
 struct resa;
 
@@ -56,7 +60,9 @@ struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct sta
 //hitta kortaste vägen mellan två noder (Dijkstras algoritm)
 
 //ta bort en station
-void stationDelete(Station, 
+void stationDelete(Station, listXD) {
+blz remov station.yeah
+}
  
 
 
