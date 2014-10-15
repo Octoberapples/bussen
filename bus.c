@@ -1,8 +1,8 @@
-
-
+#include "bus.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <wchar.h>
 #include <string.h>
+#include <stdlib.h>
 
 //eventuellt lägga till en struct för en tidtabell
 
@@ -51,6 +51,62 @@ struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct sta
   return NULL;
 }
 
+//om det första noden, sista noden och nod mitt emellan
+//måste ta bort bågarna som  är kopplade till noden och sedan göra om grafen 
+
+//har directed graph en huvudnod? För att deleta en linked list 
+void deleteStation(char stationRemove, struct station *head) {
+  struct station *current = head;
+  struct station *previous = NULL;
+  while (current != NULL) {
+        if (current->station_namn == stationRemove) {
+            if (previous == NULL) {
+                current = current->busstur;
+                free(head);
+            } else {
+                previous->busstur = current->busstur;
+                free(current);
+                current = previous->busstur;
+            }
+        } else {
+            previous = current;
+            current = current->busstur;
+        }
+    }    
+}
+
+
+
+
+char lineRead[128];
+
+void ReadFile(FILE *fileToRead){ 
+  Resa r = malloc(sizeof(struct resa)); //r i Resan ska va namnet på stationen vi hanterar
+  fopen("nätverk.txt", "r");
+  //här ska man ha en while eller for loop som gör antinge rekursivt eller iterativt alla stationer
+  while(fgets(lineRead, 80, fileToRead) != NULL){
+      
+    for(int i = 0; i < 4; i++){ 
+	char* tok = strtok(lineRead,",");
+	switch(i) {
+	case 0 : r->linje = strdup(tok);
+	  break;
+	case 1 : r->bussplats1 = strdup(tok);
+	  break;
+	case 2 : r->bussplats2 = strdup(tok);
+	  break;
+	case 3 : r->tid = strdup(tok);
+	  break;
+	  }
+    }
+  }
+}  
+
+
+//måste stänga strömmen
+
+//clang
+
 //ta bort en nod
 //ta bort en båge
 //1.find nod/båge with the element (if it exists)
@@ -60,9 +116,9 @@ struct resa *mkResa(int *tid, int *linje, struct station *bussplats1, struct sta
 //hitta kortaste vägen mellan två noder (Dijkstras algoritm)
 
 //ta bort en station
-void stationDelete(Station, listXD) {
-blz remov station.yeah
-}
+//void stationDelete(Station, listXD) {
+//blz remov station.yeah
+//}
  
 
 
